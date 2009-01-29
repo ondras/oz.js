@@ -1,4 +1,4 @@
-/* (c) 2008 Ondrej Zara, 1.1 */
+/* (c) 2008 Ondrej Zara, 1.2 */
 var OZ = {
 	$:function(x) { return typeof(x) == "string" ? document.getElementById(x) : x; },
 	opera:!!window.opera,
