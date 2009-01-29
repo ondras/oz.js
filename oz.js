@@ -47,7 +47,7 @@ var OZ = {
 			var init = arguments.callee.prototype.init;
 			if (init) { init.apply(this,arguments); }
 		};
-		c.inherit = function(parent) {
+		c.implement = function(parent) {
 			for (var p in parent.prototype) { this.prototype[p] = parent.prototype[p]; }
 			return this;
 		};
