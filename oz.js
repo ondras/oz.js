@@ -128,8 +128,13 @@ var OZ = {
 			var y = document.documentElement.scrollTop || document.body.scrollTop || 0;
 			return [x,y];
 		},
-		win:function() {
-			return [window.innerWidth,window.innerHeight];
+		win:function(avail) {
+			if (avail) { return [window.innerWidth,innerHeight]; }
+			var node = (document.compatMode == "CSS1Compat" ? document.documentElement : document.body);
+			if (OZ.opera && parseFloat(navigator.appVersion) < 9.5) { node = document.body; }
+			var x = node.clientWidth;
+			var y = node.clientHeight;
+			return [x,y];
 		},
 		hasClass:function(node, className) {
 			var cn = OZ.$(node).className;
