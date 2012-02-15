@@ -14,15 +14,16 @@ var OZ = {
 		add:function(elm,event,cb) {
 			var id = OZ.Event._id++;
 			var element = OZ.$(elm);
-			var rec = [element,event,cb];
+			var fnc = (element && element.attachEvent ? function() { return cb.apply(element,arguments); } : cb);
+			var rec = [element,event,fnc];
 			var parts = event.split(" ");
 			while (parts.length) {
 				var e = parts.pop();
 				if (element) {
 					if (element.addEventListener) {
-						element.addEventListener(e,cb,false);
+						element.addEventListener(e,fnc,false);
 					} else if (element.attachEvent) {
-						element.attachEvent("on"+e,cb);
+						element.attachEvent("on"+e,fnc);
 					}
 				}
 				if (!(e in OZ.Event._byName)) { OZ.Event._byName[e] = {}; }
