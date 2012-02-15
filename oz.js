@@ -1,6 +1,7 @@
-/* (c) 2007 - now() Ondrej Zara, 1.6 */
+/* (c) 2007 - now() Ondrej Zara, 1.7 */
 var OZ = {
 	$:function(x) { return typeof(x) == "string" ? document.getElementById(x) : x; },
+	select: function(x) { return document.querySelectorAll(x); },
 	opera:!!window.opera,
 	ie:!!document.attachEvent && !window.opera,
 	gecko:!!document.getAnonymousElementByAttribute,
@@ -128,11 +129,7 @@ var OZ = {
 			return [x,y];
 		},
 		win:function() {
-			var node = (document.compatMode == "CSS1Compat" ? document.documentElement : document.body);
-			if (OZ.opera && parseFloat(navigator.appVersion) < 9.5) { node = document.body; }
-			var x = node.clientWidth;
-			var y = node.clientHeight;
-			return [x,y];
+			return [window.innerWidth,window.innerHeight];
 		},
 		hasClass:function(node, className) {
 			var cn = OZ.$(node).className;
