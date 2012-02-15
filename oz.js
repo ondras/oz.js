@@ -135,12 +135,7 @@ var OZ = {
 			return [x,y];
 		},
 		win:function(avail) {
-			if (avail) { return [window.innerWidth,innerHeight]; }
-			var node = (document.compatMode == "CSS1Compat" ? document.documentElement : document.body);
-			if (OZ.opera && parseFloat(navigator.appVersion) < 9.5) { node = document.body; }
-			var x = node.clientWidth;
-			var y = node.clientHeight;
-			return [x,y];
+			return (avail ? [window.innerWidth,window.innerHeight] : [document.documentElement.clientWidth,document.documentElement.clientHeight]);
 		},
 		hasClass:function(node, className) {
 			var cn = OZ.$(node).className;
