@@ -193,7 +193,7 @@ var OZ = {
 		}
 	},
 	Request:function(url, callback, options) {
-		var o = {data:false, method:"get", headers:{}, xml:false}
+		var o = {data:false, method:"get", headers:{}, xml:false, binary:false}
 		for (var p in options) { o[p] = options[p]; }
 		o.method = o.method.toUpperCase();
 		
@@ -202,6 +202,7 @@ var OZ = {
 		else if (window.ActiveXObject) { xhr = new ActiveXObject("Microsoft.XMLHTTP"); }
 		else { return false; }
 		xhr.open(o.method, url, true);
+		if (o.binary) { xhr.overrideMimeType("text/plain; charset=x-user-defined"); }
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState != 4) { return; }
 			if (!callback) { return; }
