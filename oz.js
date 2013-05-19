@@ -137,19 +137,19 @@ var OZ = {
 		win:function(avail) {
 			return (avail ? [window.innerWidth,window.innerHeight] : [document.documentElement.clientWidth,document.documentElement.clientHeight]);
 		},
-		hasClass:function(node, className) {
+		hasClass:(document.documentElement.classList) ? function(node, className) { return OZ.$(node).classList.contains(className); } : function(node, className) {
 			var cn = OZ.$(node).className;
 			var arr = (cn ? cn.split(" ") : []);
 			return (arr.indexOf(className) != -1);
 		},
-		addClass:function(node,className) {
+		addClass:(document.documentElement.classList) ? function(node, className) { OZ.$(node).classList.add(className); } : function(node,className) {
 			if (OZ.DOM.hasClass(node, className)) { return; }
 			var cn = OZ.$(node).className;
 			var arr = (cn ? cn.split(" ") : []);
 			arr.push(className);
 			OZ.$(node).className = arr.join(" ");
 		},
-		removeClass:function(node, className) {
+		removeClass:(document.documentElement.classList) ? function(node, className) { OZ.$(node).classList.remove(className); } : function(node, className) {
 			if (!OZ.DOM.hasClass(node, className)) { return; }
 			var cn = OZ.$(node).className;
 			var arr = (cn ? cn.split(" ") : []);
